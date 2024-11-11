@@ -17,10 +17,12 @@ class Order extends Model
         'freight_payer_self',
         'contract_number',
         'bl_number',
+        'payment_request_sent_at',
     ];
 
     protected $casts = [
-        'bl_release_date' => 'datetime',  // Casts the bl_release_date to a Carbon instance
+        'bl_release_date' => 'datetime',
+        'payment_request_sent_at' => 'datetime',
     ];
 
     /**
@@ -31,5 +33,10 @@ class Order extends Model
     public function routeNotificationForMail(Notification $notification): array|string
     {
         return 'mick.burgs@gmail.com';
+    }
+
+    public function isSelfPaidFreight(): bool
+    {
+        return $this->attributes['freight_payer_self'];
     }
 }
