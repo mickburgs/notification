@@ -39,10 +39,8 @@ class PaymentRequest extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        // TODO read from properties or something like that
-        $recipientEmail = 'mick.burgs@gmail.com';
-
         // No need to add ‘freight_payer_self’ since this mail is only being sent if this is true
+        // I haven't made any effort to style it further because I assume this is handled within the platform
         return (new MailMessage)
             ->subject('Payment Request for Order ' . $this->order->id)
             ->greeting('Hello!')
@@ -52,8 +50,7 @@ class PaymentRequest extends Notification
             ->line('Bill of Lading Number: ' . $this->order->bl_number)
             ->line('Release Date: ' . $this->order->bl_release_date->toDateTimeString())
             ->line('Released by User ID: ' . $this->order->bl_release_user_id)
-            ->from('mick.burgs@gmail.com', 'Notification App')
-            ->to($recipientEmail);
+            ->from('mick.burgs@gmail.com', 'Notification App');
     }
 
     /**
