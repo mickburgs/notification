@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\OrderSaved;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -23,6 +24,10 @@ class Order extends Model
     protected $casts = [
         'bl_release_date' => 'datetime',
         'payment_request_sent_at' => 'datetime',
+    ];
+
+    protected $dispatchesEvents = [
+        'saved' => OrderSaved::class,
     ];
 
     /**

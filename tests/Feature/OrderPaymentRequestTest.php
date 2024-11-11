@@ -34,7 +34,7 @@ class OrderPaymentRequestTest extends TestCase
     {
         Notification::fake();
         $order = Order::factory()->create([
-            'freight_payer_self' => false,
+            'freight_payer_self' => true,
             'payment_request_sent_at' => null,
         ]);
 
@@ -49,7 +49,7 @@ class OrderPaymentRequestTest extends TestCase
     {
         Notification::fake();
         $order = Order::factory()->create([
-            'freight_payer_self' => true,
+            'freight_payer_self' => false,
             'payment_request_sent_at' => now(),
         ]);
 
