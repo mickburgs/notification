@@ -9,12 +9,25 @@ Start application:
 ```bash
 composer install
 ./vendor/bin/sail up
+./vendor/bin/sail artisan migrate
 ```
 
 Run tests:
 ```bash
 ./vendor/bin/sail test
 ./vendor/bin/phpcs app/*
+```
+
+Send notification:
+```bash
+update email in Order.routeNotificationForMail
+
+ ./vendor/bin/sail artisan tinker
+		\App\Models\Order::factory(5)->create();
+		
+curl --location 'http://localhost/order/1/mark-for-payment-request-notification'
+
+./vendor/bin/sail artisan queue:work
 ```
 
 ## Process
