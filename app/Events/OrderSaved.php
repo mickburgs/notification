@@ -9,7 +9,10 @@ use Illuminate\Queue\SerializesModels;
 
 class OrderSaved
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
+
     private Order $order;
 
     /**

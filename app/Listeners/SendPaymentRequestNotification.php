@@ -14,7 +14,8 @@ class SendPaymentRequestNotification
     {
         $order = $event->getOrder();
 
-        // Check on payment_request_sent_at probably not the best choice if an Order can get updated from multiple places
+        // Check on payment_request_sent_at probably not the best choice
+        // If an Order can get updated from multiple places
         // This might cause the PaymentRequest to be sent multiple times
         if ($order->isSelfPaidFreight() || $order->paymentRequestIsSend()) {
             return;

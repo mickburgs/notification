@@ -19,3 +19,4 @@ Route::get('/', function () {
 });
 
 Route::get('/order/{id}/send-payment-request', [OrderController::class, 'sendPaymentRequest']);
+Route::get('/order/{id}/mark-for-payment-request-notification', [OrderController::class, 'markOrderForPaymentRequestNotification']);

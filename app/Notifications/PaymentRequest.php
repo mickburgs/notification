@@ -4,10 +4,11 @@ namespace App\Notifications;
 
 use App\Models\Order;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class PaymentRequest extends Notification
+class PaymentRequest extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -22,6 +23,11 @@ class PaymentRequest extends Notification
     public function __construct(Order $order)
     {
         $this->order = $order;
+    }
+
+    public function getOrder(): Order
+    {
+        return $this->order;
     }
 
     /**
@@ -41,7 +47,7 @@ class PaymentRequest extends Notification
     {
         // No need to add ‘freight_payer_self’ since this mail is only being sent if this is true
         // I haven't made any effort to style it further because I assume this is handled within the platform
-        return (new MailMessage)
+        return (new MailMessage())
             ->subject('Payment Request for Order ' . $this->order->id)
             ->greeting('Hello!')
             ->line('You have a payment request for the following Order:')

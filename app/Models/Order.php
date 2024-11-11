@@ -10,7 +10,8 @@ use Illuminate\Notifications\Notification;
 
 class Order extends Model
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
+    use Notifiable;
 
     protected $fillable = [
         'bl_release_date',

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<ruleset name="Project Rules">
+    <description>My project's coding standards</description>
+    <!-- Set the coding standard -->
+    <rule ref="PSR12"/>
+
+    <!-- Exclude specific paths or files -->
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+
+</ruleset>
