@@ -42,6 +42,16 @@ class Order extends Model
 
     public function isSelfPaidFreight(): bool
     {
-        return $this->attributes['freight_payer_self'];
+        return $this->attributes['freight_payer_self'] ?? false;
+    }
+
+    public function setPaymentRequestSentAt(): void
+    {
+        $this->payment_request_sent_at = now();
+    }
+
+    public function paymentRequestIsSend(): bool
+    {
+        return $this->payment_request_sent_at !== null;
     }
 }
